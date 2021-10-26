@@ -1,5 +1,3 @@
-let myLibrary = [];
-
 function Book(title, author, pages, status) {
     this.title = title;
     this.author = author;
@@ -49,6 +47,7 @@ function createCard(element, index) {
 
         card.appendChild(el);
     }
+    card.appendChild(createEditButton(index));
     return card;
 }
 
@@ -65,6 +64,14 @@ function createCheckbox(status) {
     return checkbox;
 }
 
+function createEditButton(index) {
+    const button = document.createElement('button');
+    button.textContent = 'Edit';
+    button.setAttribute('data-index-number', `${index}`);
+    button.addEventListener('click', showEditForm);
+    return button;
+}
+
 function showAddForm() {
     const form = document.getElementById('add-form');
     form.style.display = 'flex';
@@ -75,6 +82,22 @@ function hideAddForm() {
     form.style.display = 'none';
 }
 
+function showEditForm() {
+    const form = document.getElementById('add-form');
+    const index = this.dataset.indexNumber;
+    const book = myLibrary[index];
+
+    console.log(form[0]);
+    console.table(book);
+    populateForm(form, book);
+    showAddForm();
+}
+
+function populateForm(form, book) {
+    form[0].value = 'kulawy'
+}
+
+let myLibrary = [];
 myLibrary.push(new Book('title1', 'author1', '321', 'true'));
 const cardSection = document.getElementById('card-section');
 initCards();
