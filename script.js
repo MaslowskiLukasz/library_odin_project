@@ -6,17 +6,17 @@ function Book(title, author, pages, status) {
 }
 
 function addBookToLibrary() {
-  const form = document.getElementById('add-form').elements;
-  const formValues = [...form].filter(x => {
+    const form = document.getElementById('add-form').elements;
+    const formValues = [...form].filter(x => {
       return x.localName === 'input' ? true : false;
-  });
+    });
 
-  const title = formValues[0].value;
-  const author = formValues[1].value;
-  const pages = formValues[2].value;
-  const status = formValues[3].checked;
+    const title = formValues[0].value;
+    const author = formValues[1].value;
+    const pages = formValues[2].value;
+    const status = formValues[3].checked;
 
-  return new Book(title, author, pages, status);
+    return new Book(title, author, pages, status);
 }
 
 function initCards() {
@@ -68,33 +68,34 @@ function createEditButton(index) {
     const button = document.createElement('button');
     button.textContent = 'Edit';
     button.setAttribute('data-index-number', `${index}`);
-    button.addEventListener('click', showEditForm);
+    button.setAttribute('data-button-type', 'edit');
+    button.addEventListener('click', showForm);
     return button;
 }
 
-function showAddForm() {
+function showForm() {
     const form = document.getElementById('add-form');
+
+    if(this.dataset.buttonType === 'edit') {
+        const index = this.dataset.indexNumber;
+        const book = myLibrary[index];
+        populateForm(form, book);
+    }
+    
     form.style.display = 'flex';
 }
 
-function hideAddForm() {
+function hideForm() {
     const form = document.getElementById('add-form');
     form.style.display = 'none';
-}
-
-function showEditForm() {
-    const form = document.getElementById('add-form');
-    const index = this.dataset.indexNumber;
-    const book = myLibrary[index];
-
-    console.log(form[0]);
-    console.table(book);
-    populateForm(form, book);
-    showAddForm();
+    form.reset();
 }
 
 function populateForm(form, book) {
-    form[0].value = 'kulawy'
+    form[0].value = book.title;
+    form[1].value = book.author;
+    form[2].value = book.pages;
+    form[3].checked = book.status;
 }
 
 let myLibrary = [];
@@ -103,12 +104,12 @@ const cardSection = document.getElementById('card-section');
 initCards();
 
 const addBtn = document.getElementById('add-btn');
-addBtn.addEventListener('click', showAddForm);
+addBtn.addEventListener('click', showForm);
 
 const formAddBtn = document.getElementById('form-add-btn');
 formAddBtn.addEventListener('click', _ => {
     myLibrary.push( addBookToLibrary() );
     const newCard = createCard(myLibrary.at(-1), myLibrary.length-1);
     cardSection.appendChild(newCard);
-    hideAddForm();
+    hideForm();
 });
