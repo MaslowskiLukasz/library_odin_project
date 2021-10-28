@@ -75,6 +75,7 @@ function createEditButton(index) {
 
 function showForm() {
   const form = document.getElementById('add-form');
+  form.reset();
 
   if (this.dataset.buttonType === 'edit') {
     const index = this.dataset.indexNumber;
