@@ -100,7 +100,10 @@ function populateForm(form, book) {
 }
 
 let myLibrary = [];
-myLibrary.push(new Book('title1', 'author1', '321', 'true'));
+myLibrary.push(new Book('How to avoid climate disaster', 'Bill Gates', '272', 'true'));
+myLibrary.push(new Book('Sapiens: od zwierząt do bogów', 'Juwal Noach Harari', '544', 'false'));
+myLibrary.push(new Book('Steve Jobs', 'Isaacson Walter', '736', 'true'));
+
 const cardSection = document.getElementById('card-section');
 initCards();
 
