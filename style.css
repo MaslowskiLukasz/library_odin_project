@@ -45,11 +45,13 @@ a {
   justify-content: flex-end;
   background-color: var(--dark-color);
   color: #ffffff;
+  min-width: 20em;
 }
 
 .title {
   color: var(--first-accent-color);
   font-weight: bold;
+  font-size: 18px;
 }
 
 .card-label {
