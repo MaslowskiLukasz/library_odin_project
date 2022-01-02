@@ -1,30 +1,34 @@
 :root {
-  --darkest-color: #082032;
-  --darker-color: #2C394B;
+  --darkest-color: #04293A;
+  --darker-color: #041C32;
   --dark-color: #334756;
-  --first-accent-color: #FF4C29;
-  --second-accent-color: #DA0037;
+  --first-accent-color: #ECB365;
+  --second-accent-color: #FF5151;
 }
 
 body {
+  background-color: var(--darkest-color);
   padding-left: 12em;
   padding-right: 12em;
-  background-color: var(--darkest-color);
 }
 
 nav {
   padding-top: 1em;
   padding-bottom: 1em;
   display: flex;
+  font-size: 1.5em;
   justify-content: space-between;
 }
 
 a {
+  color: var(--second-accent-color);
   text-decoration: none;
 }
 
 #card-section {
   padding-top: 2em;
+  padding-left: 12em;
+  padding-right: 12em;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -50,11 +54,14 @@ a {
 
 .card-label {
   display: inline-block;
+  margin-bottom: .2em;
+  margin-top: .3em;
 }
 
-#overlay {
+#form-wrapper {
   background-color: #000;
   padding: .5em 4em 2em 4em;
+  border-radius: 1em;
   margin: auto;
 	width: 20em;
 	position: fixed;
@@ -63,7 +70,7 @@ a {
   color: #ffffff;
 }
 
-#overlay {
+#form-wrapper {
   display: none;
 }
 
@@ -75,17 +82,23 @@ a {
 
 button {
   border: none;
-  border-radius: 0.5em;
+  border-radius: .5em;
+  padding: 1em;
+  background-color: var(--first-accent-color);
+  transition: .5s ease-out;
+}
+
+button:hover {
+  background-color: var(--second-accent-color);
 }
 
 #add-btn {
-  padding: 0.5em;
   border: none;
   background-color: var(--second-accent-color);
 }
 
 .edit-btn {
-  margin-top: auto;
+  margin-top: 2em;
   width: 100%;
   background-color: var(--first-accent-color);
 }
@@ -94,6 +107,11 @@ button {
   background-color: var(--first-accent-color);
 }
 
-.edit-btn:hover {
-  background-color: var(--second-accent-color);
+#form-add-btn {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+input {
+  margin-bottom: .5em;
 }
