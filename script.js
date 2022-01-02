@@ -44,6 +44,13 @@ function createCard(element, index) {
     if (property === 'title') {
       el.setAttribute('class', 'title');
     }
+    else {
+      const propertyString = property.toString();
+      const label = document.createElement('p');
+      label.textContent = `${propertyString.charAt(0).toUpperCase() + propertyString.slice(1)}:`;
+      label.classList.add('card-label');
+      card.appendChild(label);
+    }
 
     card.appendChild(el);
   }
@@ -69,12 +76,14 @@ function createEditButton(index) {
   button.textContent = 'Edit';
   button.setAttribute('data-index-number', `${index}`);
   button.setAttribute('data-button-type', 'edit');
+  button.setAttribute('class', 'edit-btn');
   button.addEventListener('click', showForm);
   return button;
 }
 
 function showForm() {
   const form = document.getElementById('add-form');
+  form.parentNode.style.display = 'block';
   form.reset();
 
   if (this.dataset.buttonType === 'edit') {
@@ -116,4 +125,4 @@ form.addEventListener('submit', _ => {
   const newCard = createCard(myLibrary.at(-1), myLibrary.length - 1);
   cardSection.appendChild(newCard);
   hideForm();
-})
+});
