@@ -96,8 +96,9 @@ function showForm() {
 }
 
 function hideForm() {
+  const wrapper = document.getElementById("overlay");
   const form = document.getElementById('add-form');
-  form.style.display = 'none';
+  wrapper.style.display = 'none';
   form.reset();
 }
 
@@ -119,6 +120,7 @@ initCards();
 const addBtn = document.getElementById('add-btn');
 addBtn.addEventListener('click', showForm);
 
+
 const form = document.getElementById('add-form');
 form.addEventListener('submit', _ => {
   myLibrary.push(addBookToLibrary());
@@ -126,3 +128,6 @@ form.addEventListener('submit', _ => {
   cardSection.appendChild(newCard);
   hideForm();
 });
+
+const closeForm = document.getElementById("form-close");
+closeForm.addEventListener('click', hideForm);
