@@ -83,7 +83,7 @@ function createEditButton(index) {
 
 function showForm() {
   const form = document.getElementById('add-form');
-  form.parentNode.style.display = 'block';
+  form.parentNode.parentNode.style.display = 'flex';
   form.reset();
 
   if (this.dataset.buttonType === 'edit') {
@@ -96,7 +96,7 @@ function showForm() {
 }
 
 function hideForm() {
-  const wrapper = document.getElementById("form-wrapper");
+  const wrapper = document.getElementById("form-overlay");
   const form = document.getElementById('add-form');
   wrapper.style.display = 'none';
   form.reset();
