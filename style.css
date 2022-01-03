@@ -46,6 +46,11 @@ a {
   background-color: var(--dark-color);
   color: #ffffff;
   min-width: 20em;
+  transition: all .3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
 
 .title {
