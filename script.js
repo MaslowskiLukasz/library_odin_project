@@ -96,7 +96,7 @@ function showForm() {
 }
 
 function hideForm() {
-  const wrapper = document.getElementById("form-overlay");
+  const wrapper = document.getElementById("add-form-overlay");
   const form = document.getElementById('add-form');
   wrapper.style.display = 'none';
   form.reset();

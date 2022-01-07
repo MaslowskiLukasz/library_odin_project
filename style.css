@@ -65,7 +65,7 @@ a {
   margin-top: .3em;
 }
 
-#form-overlay {
+.form-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -77,11 +77,11 @@ a {
   z-index: 20;
 }
 
-#form-overlay {
+.form-overlay {
   display: none;
 }
 
-#form-wrapper {
+.form-wrapper {
   background-color: #000;
   padding: .5em 4em 2em 4em;
   border-radius: 1em;
@@ -91,7 +91,7 @@ a {
   z-index: 20;
 }
 
-#form-overlay::after {
+.form-overlay::after {
   position: fixed;
   content: "";
   top: 0;
@@ -102,7 +102,7 @@ a {
   z-index: -2;
 }
 
-#form-overlay::before {
+.form-overlay::before {
   position: absolute;
   content: "";
   top: 0;
