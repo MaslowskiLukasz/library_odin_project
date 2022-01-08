@@ -158,3 +158,11 @@ button:hover {
 input {
   margin-bottom: .5em;
 }
+
+#index {
+  display: none;
+}
+
+h2 {
+  color: var(--first-accent-color);
+}

@@ -95,15 +95,8 @@ function showEditForm() {
   
   const index = this.dataset.indexNumber;
   const book = myLibrary[index];
+  form.dataset.indexNumber = index;
   populateForm(form, book);
-  form.addEventListener('submit', _ => {
-    myLibrary[index].title = form[0].value;
-    myLibrary[index].author = form[1].value;
-    myLibrary[index].pages = form[2].value;
-    myLibrary[index].status = form[3].checked;
-    updateCardSection();
-    hideEditForm();
-  });
   form.style.display = 'flex';
 }
 
@@ -151,8 +144,17 @@ addForm.addEventListener('submit', _ => {
   myLibrary.push(addBookToLibrary());
   const newCard = createCard(myLibrary.at(-1), myLibrary.length - 1);
   cardSection.appendChild(newCard);
-  updateCardSection();
   hideAddForm();
+});
+
+const editForm = document.getElementById('edit-form');
+editForm.addEventListener('submit', _ => {
+  const index = editForm.dataset.indexNumber;
+  myLibrary[index].title = editForm[0].value;
+  myLibrary[index].author = editForm[1].value;
+  myLibrary[index].pages = editForm[2].value;
+  myLibrary[index].status = editForm[3].checked;
+  hideEditForm();
 });
 
 const closeAddForm = document.getElementById('add-form-close');
