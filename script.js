@@ -77,29 +77,50 @@ function createEditButton(index) {
   button.setAttribute('data-index-number', `${index}`);
   button.setAttribute('data-button-type', 'edit');
   button.setAttribute('class', 'edit-btn');
-  button.addEventListener('click', showForm);
+  button.addEventListener('click', showEditForm);
   return button;
 }
 
-function showForm() {
+function showAddForm() {
   const form = document.getElementById('add-form');
   form.parentNode.parentNode.style.display = 'flex';
   form.reset();
-
-  if (this.dataset.buttonType === 'edit') {
-    const index = this.dataset.indexNumber;
-    const book = myLibrary[index];
-    populateForm(form, book);
-  }
-
   form.style.display = 'flex';
 }
 
-function hideForm() {
+function showEditForm() {
+  const form = document.getElementById('edit-form');
+  form.parentNode.parentNode.style.display = 'flex';
+  form.reset();
+  
+  const index = this.dataset.indexNumber;
+  const book = myLibrary[index];
+  populateForm(form, book);
+  form.addEventListener('submit', _ => {
+    myLibrary[index].title = form[0].value;
+    myLibrary[index].author = form[1].value;
+    myLibrary[index].pages = form[2].value;
+    myLibrary[index].status = form[3].checked;
+    updateCardSection();
+    hideEditForm();
+  });
+  form.style.display = 'flex';
+}
+
+function hideAddForm() {
   const wrapper = document.getElementById("add-form-overlay");
   const form = document.getElementById('add-form');
   wrapper.style.display = 'none';
   form.reset();
+  updateCardSection();
+}
+
+function hideEditForm() {
+  const wrapper = document.getElementById("edit-form-overlay");
+  const form = document.getElementById('edit-form');
+  wrapper.style.display = 'none';
+  form.reset();
+  updateCardSection();
 }
 
 function populateForm(form, book) {
@@ -107,6 +128,11 @@ function populateForm(form, book) {
   form[1].value = book.author;
   form[2].value = book.pages;
   form[3].checked = book.status;
+}
+
+function updateCardSection() {
+  cardSection.innerHTML = '';
+  initCards();
 }
 
 let myLibrary = [];
@@ -118,16 +144,19 @@ const cardSection = document.getElementById('card-section');
 initCards();
 
 const addBtn = document.getElementById('add-btn');
-addBtn.addEventListener('click', showForm);
+addBtn.addEventListener('click', showAddForm);
 
-
-const form = document.getElementById('add-form');
-form.addEventListener('submit', _ => {
+const addForm = document.getElementById('add-form');
+addForm.addEventListener('submit', _ => {
   myLibrary.push(addBookToLibrary());
   const newCard = createCard(myLibrary.at(-1), myLibrary.length - 1);
   cardSection.appendChild(newCard);
-  hideForm();
+  updateCardSection();
+  hideAddForm();
 });
 
-const closeForm = document.getElementById("form-close");
-closeForm.addEventListener('click', hideForm);
+const closeAddForm = document.getElementById('add-form-close');
+closeAddForm.addEventListener('click', hideAddForm);
+
+const closeEditForm = document.getElementById('edit-form-close');
+closeEditForm.addEventListener('click', hideEditForm)
